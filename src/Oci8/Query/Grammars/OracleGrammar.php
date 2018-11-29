@@ -230,9 +230,9 @@ class OracleGrammar extends Grammar
             return $value;
         }
 
-        $value = Str::upper($value);
+        $value = $this->isReserved($value) ? Str::lower($value) : Str::upper($value);
 
-        return '"' . str_replace('"', '""', $value) . '"';
+        return parent::wrapValue($value);
     }
 
     /**
